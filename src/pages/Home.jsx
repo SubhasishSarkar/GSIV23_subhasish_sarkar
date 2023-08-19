@@ -17,7 +17,9 @@ export default function Home() {
                 searchQuery
                     ? `/search/movie?query=${searchQuery}&page=1`
                     : `/movie/upcoming?page=1`
-            )
+            ), {
+                refetchOnWindowFocus: false,
+            }
     )
     const { mutate, isLoading: isLoadingLoadmore } = useMutation(({ url }) =>
         fetcher(url)
@@ -47,8 +49,12 @@ export default function Home() {
                     setList(data.results)
                     setPage(1)
                     setTotalPages(data.total_pages)
+                    if (data.total_pages === 1)
+                        setHasMore(false)
+                    else
+                        setHasMore(true)
                 },
-                onError(error, variables, context) {
+                onError(error) {
                     console.log(error)
                 },
             }
@@ -71,7 +77,7 @@ export default function Home() {
                     })
                     setPage((prev) => prev + 1)
                 },
-                onError(error, variables, context) {
+                onError(error) {
                     console.log(error)
                 },
             }

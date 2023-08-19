@@ -20,6 +20,8 @@ function MovieDetails() {
     if (isLoading || isFetching) {
         return <div className="loading">Loading&#8230;</div>
     }
+    if (error)
+        return <div style={{marginTop: "60px"}}>Error : Movie not found</div>
     return (
         <>
             {data && (

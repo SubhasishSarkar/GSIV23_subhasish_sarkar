@@ -4,7 +4,6 @@ import Header from './Header'
 
 function Layout() {
     const location = useLocation()
-    console.log(location.pathname.includes("/movie/"))
     return (
         <div>
             <div className="header_fixed" style={{  opacity: location.pathname.includes("/movie/")?"0.8":"1" }}>
