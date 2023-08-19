@@ -44,8 +44,8 @@
 }
 .text_wrapper {
     color: white;
-    background-image: linear-gradient(0deg, #000 1%, transparent 35%),
-        linear-gradient(90deg, #181818 25%, transparent 70%);
+    background-image: linear-gradient(0deg, #000 1%, transparent 50%),
+        linear-gradient(90deg, #181818 20%, transparent 40%);
     display: flex;
     flex-direction: column;
     height: 100%;

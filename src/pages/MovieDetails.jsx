@@ -36,7 +36,7 @@ function MovieDetails() {
                     className="details_container"
                 >
                     <div className="text_wrapper">
-                        <div style={{ width: '40%', marginBottom: '10%' }}>
+                        <div style={{ width: '90%' }}>
                             <h1>{data.title}</h1>
                             <div className="info_container">
                                 {data.adult ? (
