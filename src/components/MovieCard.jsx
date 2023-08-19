@@ -25,7 +25,10 @@ function MovieCard({ movie }) {
                 }
             />
             <Card.Body>
-                <Card.Title className="card_title">{movie.title}</Card.Title>
+                <Card.Title className="card_title d-flex justify-content-between">
+                    <div className="card_desc">{movie.title} </div>
+                    <div>({movie.vote_average})</div>
+                </Card.Title>
                 <Card.Text className="card_desc">{movie.overview}</Card.Text>
             </Card.Body>
         </Card>

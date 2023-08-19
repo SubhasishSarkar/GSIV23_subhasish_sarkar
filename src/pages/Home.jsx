@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { fetcher } from '../hooks'
 import { useMutation, useQuery } from 'react-query'
-import Skeleton from 'react-loading-skeleton'
 import MovieList from '../components/MovieList'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSelector } from 'react-redux'
-import MovieCardSkeleton from '../components/MovieCardSkeleton'
 export default function Home() {
     const [page, setPage] = useState(1)
     const [list, setList] = useState([])
     const [hasMore, setHasMore] = useState(true)
-    const [totalPages,setTotalPages] = useState('')
+    const [totalPages, setTotalPages] = useState('')
     const searchQuery = useSelector((state) => state.searchQuery)
     const { isLoading, isFetching, error, data } = useQuery(
         ['movie-list'],
@@ -33,9 +31,8 @@ export default function Home() {
     }, [data])
 
     useEffect(() => {
-        
         if (isLoading || isFetching) {
-            return;
+            return
         }
         serachMovies(searchQuery)
     }, [searchQuery, isLoading, isFetching])
@@ -81,17 +78,13 @@ export default function Home() {
         )
     }
 
-    if (!isLoading || !isFetching) {
-        return (
-            <div>
-               Loading....
-            </div>
-        )
+    if (isLoading || isFetching) {
+        return <div className="loading">Loading&#8230;</div>
     }
     return (
         <>
             {list.length ? (
-                <div>
+                 <div style={{ marginTop: '60px' }}>
                     <InfiniteScroll
                         dataLength={list.length} //This is important field to render the next data
                         next={handleLoadMore}
@@ -108,7 +101,9 @@ export default function Home() {
                         <MovieList data={list} />
                     </InfiniteScroll>
                 </div>
-            ): <p>No result</p>}
+            ) : (
+                <p>No result</p>
+            )}
         </>
     )
 }

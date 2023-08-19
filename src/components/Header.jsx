@@ -12,7 +12,6 @@ function Header() {
     const location = useLocation()
     useEffect(() => {
         const delayInputTimeoutId = setTimeout(() => {
-           
             dispatch(searcheMovie(search))
         }, 500)
         return () => clearTimeout(delayInputTimeoutId)
@@ -21,13 +20,17 @@ function Header() {
         <Navbar className="bg-body-tertiary justify-content-between px-2">
             <div className="container gap-2">
                 <Col className="col-10">
-                    {location.pathname.includes("/movie/") ? "Movie Details" :<Form.Control
-                        type="text"
-                        placeholder="Search"
-                        className=" mr-sm-2"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />}
+                    {location.pathname.includes('/movie/') ? (
+                        'Movie Details'
+                    ) : (
+                        <Form.Control
+                            type="text"
+                            placeholder="Search"
+                            className=" mr-sm-2"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                    )}
                 </Col>
                 <Col className="col-2 d-flex justify-content-end">
                     <Link to="/">

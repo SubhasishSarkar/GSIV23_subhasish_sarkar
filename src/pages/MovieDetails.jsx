@@ -3,6 +3,9 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { fetcher } from '../hooks'
 import movieImage from '../assets/video-player.png'
+import { AiFillStar } from 'react-icons/ai'
+import { BiSolidTimeFive } from 'react-icons/bi'
+import {MdDateRange} from 'react-icons/md'
 function MovieDetails() {
     const { id } = useParams()
     const { isLoading, isFetching, error, data } = useQuery(
@@ -10,8 +13,8 @@ function MovieDetails() {
         () => fetcher(`/movie/${id}`)
     )
 
-    if (isFetching || isLoading) {
-        return <div>Loading...</div>
+    if (isLoading || isFetching) {
+        return <div className="loading">Loading&#8230;</div>
     }
     return (
         <>
@@ -36,13 +39,13 @@ function MovieDetails() {
                                     <div className="age_wrapper"> U/A</div>
                                 )}
                                 <div className="age_wrapper">
-                                    {data.runtime} min{' '}
+                                    {(data.runtime - data.runtime % 60 )/ 60}:{data.runtime % 60 }<BiSolidTimeFive/>
                                 </div>
                                 <div className="age_wrapper">
-                                    {data.release_date.split('-')[0]}
+                                    {data.release_date.split('-')[0]} <MdDateRange/>
                                 </div>
                                 <div className="age_wrapper">
-                                    {data.vote_average}
+                                    {data.vote_average} <AiFillStar/>
                                 </div>
                             </div>
                             <div>{data.overview}</div>
