@@ -12,6 +12,10 @@ function MovieDetails() {
         ['movie-details', id],
         () => fetcher(`/movie/${id}`)
     )
+    const { isLoading: isLoadingCredits, isFetching: isFetchingCredits, data : dataCredits } = useQuery(
+        ['movie-credits', id],
+        () => fetcher(`/movie/${id}/credits`)
+    )
 
     if (isLoading || isFetching) {
         return <div className="loading">Loading&#8230;</div>
@@ -49,16 +53,24 @@ function MovieDetails() {
                                 </div>
                             </div>
                             <div>{data.overview}</div>
-                            <div>
+                            {(!isFetchingCredits && !isLoadingCredits) &&(<div>
                                 <div>
                                     <span className="lable">Director :</span>
-                                    <span>{data.title}</span>
+                                    <span style={{fontSize: "13px"}}>{dataCredits.crew.find((item) => {
+                                        if (item.job === "Director") {
+                                            return true
+                                        }
+                                    }).name}</span>
                                 </div>
                                 <div>
                                     <span className="lable">Cast :</span>
-                                    <span>{data.title}</span>
+                                    {dataCredits.cast.map((item,index,array) => {
+                                        if(index+1 === array.length)
+                                            return <span key={item.id} style={{ fontSize: "13px" }}>{item.name}</span>
+                                        return <span key={item.id} style={{ fontSize: "13px" }}>{item.name},</span>
+                                    })}
                                 </div>
-                            </div>
+                            </div>)}
                         </div>
                     </div>
                 </div>
