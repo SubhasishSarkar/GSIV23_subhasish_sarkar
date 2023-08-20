@@ -7,7 +7,7 @@ function Layout() {
     return (
         <div>
             <div className="header_fixed" style={{  opacity: location.pathname.includes("/movie/")?"0.8":"1" }}>
-                <Header />
+                <Header  pathname={location.pathname}/>
             </div>
             <Outlet />
         </div>

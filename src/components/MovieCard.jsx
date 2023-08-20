@@ -1,7 +1,5 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { useQuery } from 'react-query'
 
 import { useNavigate } from 'react-router'
 import movieImage from '../assets/video-player.png'
@@ -11,6 +9,7 @@ function MovieCard({ movie }) {
         <Card
             style={{ width: '100%' }}
             className="card"
+            
             onClick={() => {
                 naviaget('/movie/' + movie.id)
             }}

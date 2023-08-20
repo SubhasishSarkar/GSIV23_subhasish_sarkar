@@ -10,7 +10,7 @@ function App() {
     return (
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>
-                <RouterProvider router={router} />{' '}
+                <RouterProvider router={router} />
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </Provider>

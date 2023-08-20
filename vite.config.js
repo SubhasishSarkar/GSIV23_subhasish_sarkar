@@ -38,5 +38,10 @@ export default defineConfig(() => {
     const env = dotenv.config({ path: './.env' }).parsed
     return {
         plugins: [react(), dotEnvReplacement(env), VitePWA(manifestForPlugin)],
+        test: {
+            globals: true,
+            environment: 'jsdom',
+            setupFiles: './tests/setup.js',
+        },
     }
 })

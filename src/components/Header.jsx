@@ -3,13 +3,12 @@ import Form from 'react-bootstrap/Form'
 import { AiFillHome } from 'react-icons/ai'
 import Col from 'react-bootstrap/Col'
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { searcheMovie } from '../store/slice/searchSlice'
-function Header() {
+function Header({ pathname}) {
     const [search, setSearch] = useState('')
-    const dispatch = useDispatch()
-    const location = useLocation()
+    const dispatch = useDispatch() 
     useEffect(() => {
         const delayInputTimeoutId = setTimeout(() => {
             dispatch(searcheMovie(search))
@@ -20,7 +19,7 @@ function Header() {
         <Navbar className="bg-body-tertiary justify-content-between px-2">
             <div className="container gap-2">
                 <Col className="col-10">
-                    {location.pathname.includes('/movie/') ? (
+                    {pathname.includes('/movie/') ? (
                         'Movie Details'
                     ) : (
                         <Form.Control
